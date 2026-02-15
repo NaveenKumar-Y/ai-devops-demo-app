@@ -1,0 +1,31 @@
+```
+name: Python App Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run app
+        run: python app.py
+
+      - name: Build Docker image
+        uses: docker/build-action@v2
+        with:
+          build-arg: DOCKER_USERNAME=$DOCKER_USERNAME
+          build-arg: DOCKER_PASSWORD=$DOCKER_PASSWORD
+          push: true
+        run: |
+          docker build -t my-python-app .
+```
