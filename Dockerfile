@@ -1,1 +1,1 @@
-Error: Server returned status 404 - {"error":"model 'llama3' not found"}
+Error: Server returned status 500 - {"error":"model requires more system memory (4.6 GiB) than is available (3.0 GiB)"}
