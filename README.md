@@ -52,7 +52,7 @@ You need a Personal Access Token (PAT) so the code can push files to your repos.
 
 export GITHUB TOKEN in the environment variables:
 ```
-expoert GITHUB_TOKEN=ghp_your_token_here...
+export GITHUB_TOKEN=ghp_your_token_here...
 
 ```
 
