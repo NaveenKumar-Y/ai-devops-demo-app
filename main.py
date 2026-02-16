@@ -232,7 +232,9 @@ def review_pull_request(repo_name, pr_number):
     2. Potential bugs (logic errors).
     3. Code quality (clean code principles).
     
-    Be concise. If the code looks good, just say "LGTM".
+    Be concise. 
+    
+    If no issues found and If the code looks good, just say "LGTM".
     
     DIFF:
     {diff_text[:4000]}  # Truncate to avoid hitting token limits
@@ -254,31 +256,28 @@ def review_pull_request(repo_name, pr_number):
 @app.post("/webhook")
 async def webhook(request: Request):
     payload = await request.json()
+    action = payload.get("action")
     
-    # Filter for Repository Creation Event
-    # We check if 'repository' key exists to avoid crashing on ping events
-    if payload.get("action") == "created" and "repository" in payload:
+    # --- CASE 1: Repository Created ---
+    if action == "created" and "repository" in payload:
         repo_data = payload["repository"]
         repo_name = repo_data["full_name"]
-        description = repo_data.get("description", "") # Get description safely
+        description = repo_data.get("description", "")
         
         print(f"New repo detected: {repo_name}")
-        print(f"Description: {description}")
-        
-        # Trigger the Agent
         create_pr(repo_name, description)
     
-    if payload.get("action")  in ["opened", "synchronize"] and "pull_request" in payload:
+    # --- CASE 2: Pull Request Events (Opened / Synchronize) ---
+    elif action in ["opened", "synchronize"] and "pull_request" in payload:
         repo_name = payload["repository"]["full_name"]
         pr_number = payload["pull_request"]["number"]
-    
-    # Skip our own AI-created PRs to avoid infinite loops!
-    # We check if the PR branch is 'ai-bootstrap'
-    if "pull_request" in payload:
-        if payload["pull_request"]["head"]["ref"] == "ai-bootstrap":
-            print("Skipping review of AI-generated PR.")
+        branch_ref = payload["pull_request"]["head"]["ref"]
+
+        # Skip our own AI-created PRs to avoid infinite loops
+        if branch_ref == "ai-bootstrap":
+            print(f"Skipping review of AI-generated PR in {repo_name}.")
         else:
+            # Only run review if variables are safely defined
             review_pull_request(repo_name, pr_number)
         
     return {"status": "ok"}
-

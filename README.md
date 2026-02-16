@@ -76,7 +76,7 @@ For the agent to actually "see" your repos, you need to add a Webhook.
 
 1. Go to your **GitHub Settings** (or specific Repo Settings) -> **Webhooks**.
 2. Click **Add webhook**.
-3. **Payload URL:** `http://YOUR_VM_PUBLIC_IP:8000/webhook`
+3. **Payload URL:** `http://YOUR_VM_ENDPOINT:8000/webhook`
 * *Note: If you restart your VM, this IP might change unless you set a static one.*
 
 
@@ -90,4 +90,7 @@ For the agent to actually "see" your repos, you need to add a Webhook.
 
 That's it. Now just create a new empty repo in our orginizationwith a description to test it out!
 
-Tested repo(AI agent created the bolierplate files based on repo description): https://github.com/Naveen-Kumar-Org/Django_app/pull/1
+
+**Testing:**</br>
+- AI agent created the bolierplate files based on repo description: https://github.com/Naveen-Kumar-Org/Django_app/pull/1
+- AI agent reviewed the code changes: https://github.com/Naveen-Kumar-Org/Django_app/pull/5
