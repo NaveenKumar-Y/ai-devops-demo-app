@@ -1,7 +1,7 @@
 
 # AI DevOps Agent
 
-This is a personal project where I built an AI agent to help me with DevOps tasks. It runs on a server (I used an Azure VM) and listens to my GitHub account(Organization).
+This is a personal project where I built an simple AI agent to help me with DevOps tasks. It runs on a server (I used an Azure VM) and listens to my GitHub account(Organization).
 
 Basically, whenever I create a new repository or open a Pull Request, this agent wakes up and does the work for me.
 
@@ -29,6 +29,19 @@ It uses **Ollama** to run the AI models locally on my server. No OpenAI API keys
 * **Ollama** to run the LLM (I used the `gemma2:2b` model because it's fast).
 * **Azure VM** (Ubuntu) to host it.
 * **GitHub Webhooks** to talk to the agent.
+
+---
+
+## Architecture
+
+```mermaid
+graph LR
+    A[GitHub Webhook] -->|Repo Created / PR Opened| B(FastAPI Server)
+    B -->|Fetch Context| C{AI Agent Brain}
+    C -->|Generate Code/Review| D[Ollama (Local LLM)]
+    D -->|Commit Files / Post Comment| E[GitHub API]
+
+```
 
 ---
 
@@ -91,6 +104,6 @@ For the agent to actually "see" your repos, you need to add a Webhook.
 That's it. Now just create a new empty repo in our orginizationwith a description to test it out!
 
 
-**Testing:**</br>
+***Testing Examples:***</br>
 - AI agent created the bolierplate files based on repo description: https://github.com/Naveen-Kumar-Org/Django_app/pull/1
-- AI agent reviewed the code changes: https://github.com/Naveen-Kumar-Org/Django_app/pull/5
+- AI agent reviewed the code changes: https://github.com/Naveen-Kumar-Org/Django_app/pull/5#issuecomment-3906304691
