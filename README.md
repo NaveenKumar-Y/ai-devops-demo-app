@@ -38,9 +38,8 @@ It uses **Ollama** to run the AI models locally on my server. No OpenAI API keys
 graph LR
     A[GitHub Webhook] -->|Repo Created / PR Opened| B(FastAPI Server)
     B -->|Fetch Context| C{AI Agent Brain}
-    C -->|Generate Code/Review| D[Ollama (Local LLM)]
+    C -->|Generate Code / Review| D[Ollama Local LLM]
     D -->|Commit Files / Post Comment| E[GitHub API]
-
 ```
 
 ---
