@@ -1,9 +1,11 @@
 
 # AI DevOps Agent
 
-This is a personal project where I built an simple AI agent to help me with DevOps tasks. It runs on a server (I used an Azure VM) and listens to my GitHub account(Organization).
+This is a personal project where I built an AI agent to help me with DevOps tasks. It runs on a server (I used an Azure VM) and listens to my GitHub account(Organization).
 
 Basically, whenever I create a new repository or open a Pull Request, this agent wakes up and does the work for me.
+
+This automation standardizes repository setup and acts as an always-on security guard, reducing the time to onboard new services from hours to minutes.
 
 ## What it does
 
@@ -12,11 +14,16 @@ Basically, whenever I create a new repository or open a Pull Request, this agent
 * It automatically creates a `Dockerfile` and a GitHub Actions workflow (`ci.yml`) for that language.
 * It opens a Pull Request with these files so I can just merge them.
 
+eg:
+![alt text](image.png)
+
 
 **Code Review:**
 * When I open a Pull Request, the AI reads my code changes.
 * It posts a comment on the PR if it finds bugs or security issues.
 
+eg:
+![alt text](image-2.png)
 
 
 It uses **Ollama** to run the AI models locally on my server. No OpenAI API keys required.
@@ -71,6 +78,8 @@ export GITHUB_TOKEN=ghp_your_token_here...
 
 *(Make sure your token has `repo` and `workflow` permissions!)*
 
+**Note**: This demo uses a Personal Access Token (PAT) for simplicity. For a production environment, I would implement OpenID Connect (OIDC) or Workload Identity Federation to eliminate static secrets and enable secure, keyless authentication.
+
 ### 3. Start the Server
 
 Run this command to start the app:
@@ -100,7 +109,7 @@ For the agent to actually "see" your repos, you need to add a Webhook.
 
 6. Click **Add webhook**.
 
-That's it. Now just create a new empty repo in our orginizationwith a description to test it out!
+That's it. Now just create a new empty repo in our orginization with a description to test it out!
 
 
 ***Testing Examples:***</br>
