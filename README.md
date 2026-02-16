@@ -16,7 +16,7 @@ This automation standardizes repository setup and acts as an always-on security 
 
 eg:
 
-![alt text](image.png)
+![alt text](images/image.png)
 
 
 **Code Review:**
@@ -25,7 +25,7 @@ eg:
 
 eg:
 
-![alt text](image-2.png)
+![alt text](images/image-2.png)
 
 
 It uses **Ollama** to run the AI models locally on my server. No OpenAI API keys required.
