@@ -14,8 +14,7 @@ This automation standardizes repository setup and acts as an always-on security 
 * It automatically creates a `Dockerfile` and a GitHub Actions workflow (`ci.yml`) for that language.
 * It opens a Pull Request with these files so I can just merge them.
 
-eg:
-
+eg:</br>
 ![alt text](image.png)
 
 
@@ -23,8 +22,7 @@ eg:
 * When I open a Pull Request, the AI reads my code changes.
 * It posts a comment on the PR if it finds bugs or security issues.
 
-eg:
-
+eg:</br>
 ![alt text](image-2.png)
 
 
