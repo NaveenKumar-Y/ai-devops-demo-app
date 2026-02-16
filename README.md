@@ -15,6 +15,7 @@ This automation standardizes repository setup and acts as an always-on security 
 * It opens a Pull Request with these files so I can just merge them.
 
 eg:
+
 ![alt text](image.png)
 
 
@@ -23,6 +24,7 @@ eg:
 * It posts a comment on the PR if it finds bugs or security issues.
 
 eg:
+
 ![alt text](image-2.png)
 
 
